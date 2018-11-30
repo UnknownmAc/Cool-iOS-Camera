@@ -16,18 +16,32 @@
         super.viewDidLoad()
 
         if (thumbLists.count > 0) {
-            let thumbWidth = 40
-            let thumbHeight = 40
+            var thumbWidth = CGFloat(280)
+            var thumbHeight = CGFloat(280)
             
             var counter = 0
-            let padding = 20
+            let padding = CGFloat(20.0)
             
             // iterate and add to view
             for thumb in thumbLists {
                 let uiImage = thumb
                 let bgImage: UIImageView!
                 bgImage = UIImageView(image: uiImage)
-                bgImage.frame = CGRect(x: 10 + (counter % 2) * thumbWidth , y: thumbHeight * (counter / 2) + padding , width: thumbWidth, height: thumbHeight)
+                bgImage.transform = CGAffineTransform(scaleX: -1, y: 1)
+                if(uiImage.size.width > uiImage.size.height) {
+                    thumbHeight = thumbWidth * (uiImage.size.height / uiImage.size.width)
+                } else {
+                    thumbWidth = thumbHeight * (uiImage.size.width / uiImage.size.height)
+                }
+                var leftPad = CGFloat(0.0)
+                if(counter % 2 == 1) {
+                    leftPad = 1.0
+                }
+                let divider = CGFloat(2.0)
+                let xPos = CGFloat(padding + leftPad * thumbWidth)
+                let rowNum = CGFloat(counter)
+                let yPos = CGFloat(padding + thumbHeight * (rowNum / divider))
+                bgImage.frame = CGRect(x:  xPos, y:  yPos, width: thumbWidth, height: thumbHeight)
                 
                 // add to parent view
                 self.scrollView.addSubview(bgImage)
