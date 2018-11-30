@@ -39,6 +39,7 @@
 		9073244621A6899300033290 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9073244521A6899300033290 /* AFNetworking.framework */; };
 		9073244821A6BDA500033290 /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9073244521A6899300033290 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9073244B21A6E87A00033290 /* FileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9073244A21A6E87A00033290 /* FileUtil.m */; };
+		90E3738521B11AE400C39867 /* ThumbViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E3738421B11AE400C39867 /* ThumbViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,6 +108,7 @@
 		9073244521A6899300033290 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = CameraWithAVFoundation/AFNetworking/AFNetworking.framework; sourceTree = "<group>"; };
 		9073244921A6E87A00033290 /* FileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtil.h; sourceTree = "<group>"; };
 		9073244A21A6E87A00033290 /* FileUtil.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = FileUtil.m; sourceTree = "<group>"; };
+		90E3738421B11AE400C39867 /* ThumbViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			children = (
 				1F9730F1202F8756002B3AC9 /* SwiftCameraViewController.swift */,
 				1F9730F0202F8756002B3AC9 /* CameraWithAVFoundation-Bridging-Header.h */,
+				90E3738421B11AE400C39867 /* ThumbViewController.swift */,
 			);
 			name = "Swift View Controllers";
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				9073244B21A6E87A00033290 /* FileUtil.m in Sources */,
 				64ABD12718FF19E000B2E420 /* CameraViewController.m in Sources */,
 				64D101D51A7439B900316FAA /* CameraFlashButton.m in Sources */,
+				90E3738521B11AE400C39867 /* ThumbViewController.swift in Sources */,
 				64ABCCD01A950B8900FE8473 /* LaunchCameraButton.m in Sources */,
 				1B472D891A729EB000C85DAB /* CameraSessionView.m in Sources */,
 				64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */,

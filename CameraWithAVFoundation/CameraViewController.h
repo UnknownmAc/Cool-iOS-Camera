@@ -7,6 +7,8 @@
 //
 #import <UIKit/UIKit.h>
 
+@class ThumbViewController;
+
 @interface CameraViewController : UIViewController
 
 @end

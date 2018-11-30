@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import "AFHTTPSessionManager.h"
 #import "FileUtil.h"
+#import "CameraWithAVFoundation-Swift.h"
 
 
 @interface CameraViewController () <CACameraSessionDelegate>
@@ -56,6 +57,9 @@
 
 -(void)didCaptureImage:(UIImage *)image {
     NSLog(@"CAPTURED IMAGE");
+    ThumbViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EmotionThumbVC"];
+    [vc HandleImageDataWithImage:image];
+    [self.navigationController pushViewController:vc animated:YES];
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     [self.cameraView removeFromSuperview];
     
