@@ -36,7 +36,23 @@
 		64D101DB1A7439D100316FAA /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101DA1A7439D100316FAA /* CameraDismissButton.m */; };
 		64D101E11A75EA8A00316FAA /* CameraFocalReticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */; };
 		64ED4A401BC9A11300C9CF4C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64ED4A3F1BC9A11300C9CF4C /* Launch Screen.storyboard */; };
+		9073244621A6899300033290 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9073244521A6899300033290 /* AFNetworking.framework */; };
+		9073244821A6BDA500033290 /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9073244521A6899300033290 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9073244B21A6E87A00033290 /* FileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9073244A21A6E87A00033290 /* FileUtil.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9073244721A6BD9800033290 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9073244821A6BDA500033290 /* AFNetworking.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1B472D871A729EB000C85DAB /* CameraSessionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSessionView.h; sourceTree = "<group>"; };
@@ -88,6 +104,9 @@
 		64D101DF1A75EA8A00316FAA /* CameraFocalReticule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFocalReticule.h; sourceTree = "<group>"; };
 		64D101E01A75EA8A00316FAA /* CameraFocalReticule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFocalReticule.m; sourceTree = "<group>"; };
 		64ED4A3F1BC9A11300C9CF4C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		9073244521A6899300033290 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = CameraWithAVFoundation/AFNetworking/AFNetworking.framework; sourceTree = "<group>"; };
+		9073244921A6E87A00033290 /* FileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtil.h; sourceTree = "<group>"; };
+		9073244A21A6E87A00033290 /* FileUtil.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = FileUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9073244621A6899300033290 /* AFNetworking.framework in Frameworks */,
 				64ABD15218FF24E500B2E420 /* AVFoundation.framework in Frameworks */,
 				64ABD15018FF24DF00B2E420 /* QuartzCore.framework in Frameworks */,
 				64ABD14A18FF1B0300B2E420 /* CoreVideo.framework in Frameworks */,
@@ -158,6 +178,7 @@
 		64ABD10C18FF19E000B2E420 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9073244521A6899300033290 /* AFNetworking.framework */,
 				64ABD15118FF24E400B2E420 /* AVFoundation.framework */,
 				64ABD14F18FF24DF00B2E420 /* QuartzCore.framework */,
 				64ABD14918FF1B0300B2E420 /* CoreVideo.framework */,
@@ -218,6 +239,8 @@
 		64C983461A6F23EF00462D95 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9073244921A6E87A00033290 /* FileUtil.h */,
+				9073244A21A6E87A00033290 /* FileUtil.m */,
 				64ABD12518FF19E000B2E420 /* CameraViewController.h */,
 				64ABD12618FF19E000B2E420 /* CameraViewController.m */,
 			);
@@ -294,6 +317,7 @@
 				64ABD10618FF19E000B2E420 /* Sources */,
 				64ABD10718FF19E000B2E420 /* Frameworks */,
 				64ABD10818FF19E000B2E420 /* Resources */,
+				9073244721A6BD9800033290 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -313,6 +337,11 @@
 				CLASSPREFIX = Camera;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Gabriel Alvarado";
+				TargetAttributes = {
+					64ABD10918FF19E000B2E420 = {
+						DevelopmentTeam = V848W99S3R;
+					};
+				};
 			};
 			buildConfigurationList = 64ABD10518FF19E000B2E420 /* Build configuration list for PBXProject "CameraWithAVFoundation" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -354,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9073244B21A6E87A00033290 /* FileUtil.m in Sources */,
 				64ABD12718FF19E000B2E420 /* CameraViewController.m in Sources */,
 				64D101D51A7439B900316FAA /* CameraFlashButton.m in Sources */,
 				64ABCCD01A950B8900FE8473 /* LaunchCameraButton.m in Sources */,
@@ -490,12 +520,18 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = V848W99S3R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CameraWithAVFoundation/AFNetworking",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/niskumar/Work/niskumar/iOS/Cool-iOS-Camera/CameraWithAVFoundation/AFNetworking";
 				INFOPLIST_FILE = "CameraWithAVFoundation/CameraWithAVFoundation-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Gabriel-Alvarado.camera";
+				PRODUCT_BUNDLE_IDENTIFIER = com.niskumar.augimage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Bridging-Header.h";
@@ -513,12 +549,18 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = V848W99S3R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CameraWithAVFoundation/AFNetworking",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/niskumar/Work/niskumar/iOS/Cool-iOS-Camera/CameraWithAVFoundation/AFNetworking";
 				INFOPLIST_FILE = "CameraWithAVFoundation/CameraWithAVFoundation-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Gabriel-Alvarado.camera";
+				PRODUCT_BUNDLE_IDENTIFIER = com.niskumar.augimage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CameraWithAVFoundation/CameraWithAVFoundation-Bridging-Header.h";

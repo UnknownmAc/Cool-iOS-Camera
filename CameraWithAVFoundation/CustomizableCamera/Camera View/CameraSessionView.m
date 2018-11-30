@@ -54,8 +54,8 @@
 -(void)drawRect:(CGRect)rect {
     if (self) {
         _animationInProgress = NO;
-        [self setupCaptureManager:RearFacingCamera];
-        cameraBeingUsed = RearFacingCamera;
+        [self setupCaptureManager:FrontFacingCamera];
+        cameraBeingUsed = FrontFacingCamera;
         [self composeInterface];
         
         [[_captureManager captureSession] startRunning];
