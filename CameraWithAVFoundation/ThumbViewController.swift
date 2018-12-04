@@ -15,6 +15,8 @@
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let backgroundImg = #imageLiteral(resourceName: "background1")
+        
         if (thumbLists.count > 0) {
             var thumbWidth = CGFloat(280)
             var thumbHeight = CGFloat(280)
@@ -25,26 +27,42 @@
             // iterate and add to view
             for thumb in thumbLists {
                 let uiImage = thumb
-                let bgImage: UIImageView!
-                bgImage = UIImageView(image: uiImage)
-                bgImage.transform = CGAffineTransform(scaleX: -1, y: 1)
+                
+                let fgImage: UIImageView!
+                fgImage = UIImageView(image: resizeImage(image: uiImage, targetSize: CGSize(width: thumbWidth, height: thumbHeight)))
+                fgImage.transform = CGAffineTransform(scaleX: -1, y: 1)
+                fgImage.frame = CGRect(x: 0, y: 0, width: thumbWidth, height: thumbHeight)
+                
+                let bgUIImgView: UIImageView!
+                bgUIImgView = UIImageView(image: resizeImage(image: backgroundImg, targetSize: CGSize(width: thumbWidth, height: thumbWidth)))
+                bgUIImgView.frame = CGRect(x: 0, y: 0, width: thumbWidth, height: thumbHeight)
+                
                 if(uiImage.size.width > uiImage.size.height) {
                     thumbHeight = thumbWidth * (uiImage.size.height / uiImage.size.width)
                 } else {
                     thumbWidth = thumbHeight * (uiImage.size.width / uiImage.size.height)
                 }
+                
                 var leftPad = CGFloat(0.0)
                 if(counter % 2 == 1) {
                     leftPad = 1.0
                 }
+                
                 let divider = CGFloat(2.0)
                 let xPos = CGFloat(padding + leftPad * thumbWidth)
                 let rowNum = CGFloat(counter)
                 let yPos = CGFloat(padding + thumbHeight * (rowNum / divider))
-                bgImage.frame = CGRect(x:  xPos, y:  yPos, width: thumbWidth, height: thumbHeight)
                 
+                let mergedImgView: UIImageView!
+                var mergedImg = drawImage(image: fgImage.image!, inImage: bgUIImgView.image!, atPoint: CGPoint(x:thumbWidth * 0.05, y: thumbHeight * 0.05))
+                mergedImg = textToImage(drawText: "Hello World", inImage: mergedImg, atPoint: CGPoint(x: 0, y: 0))
+                mergedImgView = UIImageView(image: mergedImg)
+                
+                mergedImgView.transform = CGAffineTransform(scaleX: -1, y: 1)
+                mergedImgView.frame = CGRect(x: xPos, y: yPos, width: thumbWidth, height: thumbWidth)
+               
                 // add to parent view
-                self.scrollView.addSubview(bgImage)
+                self.scrollView.addSubview(mergedImgView)
                 
                 counter += 1
             }
@@ -68,6 +86,64 @@
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+        let textColor = UIColor.white
+        let textFont = UIFont(name: "Helvetica Bold", size: 12)!
+        
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+        
+        let textFontAttributes = [
+            NSAttributedStringKey.font: textFont,
+            NSAttributedStringKey.foregroundColor: textColor,
+            ] as [NSAttributedStringKey : Any]
+        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+        
+        let rect = CGRect(origin: point, size: image.size)
+        text.draw(in: rect, withAttributes: textFontAttributes)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+    
+    func drawImage(image foreGroundImage:UIImage, inImage backgroundImage:UIImage, atPoint point:CGPoint) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(backgroundImage.size, false, 0.0)
+        backgroundImage.draw(in: CGRect.init(x: 0, y: 0, width: backgroundImage.size.width, height: backgroundImage.size.height))
+        foreGroundImage.draw(in: CGRect.init(x: point.x, y: point.y, width: foreGroundImage.size.width, height: foreGroundImage.size.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+
     
     
     /*
