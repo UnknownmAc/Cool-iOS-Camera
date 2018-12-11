@@ -29,7 +29,7 @@
                 let uiImage = thumb
                 
                 let fgImage: UIImageView!
-                fgImage = UIImageView(image: resizeImage(image: uiImage, targetSize: CGSize(width: thumbWidth, height: thumbHeight)))
+                fgImage = UIImageView(image: resizeImage(image: uiImage, targetSize: CGSize(width: thumbWidth * 0.8, height: thumbHeight * 0.8)))
                 fgImage.transform = CGAffineTransform(scaleX: -1, y: 1)
                 fgImage.frame = CGRect(x: 0, y: 0, width: thumbWidth, height: thumbHeight)
                 
@@ -54,8 +54,8 @@
                 let yPos = CGFloat(padding + thumbHeight * (rowNum / divider))
                 
                 let mergedImgView: UIImageView!
-                var mergedImg = drawImage(image: fgImage.image!, inImage: bgUIImgView.image!, atPoint: CGPoint(x:thumbWidth * 0.05, y: thumbHeight * 0.05))
-                mergedImg = textToImage(drawText: "Hello World", inImage: mergedImg, atPoint: CGPoint(x: 0, y: 0))
+                var mergedImg = drawImage(image: fgImage.image!, inImage: bgUIImgView.image!, atPoint: CGPoint(x:thumbWidth * 0.4, y: thumbHeight * 0.05))
+                mergedImg = textToImage(drawText: "Top Text", drawText: "Bottom Text", inImage: mergedImg, atPoint: CGPoint(x: mergedImg.size.width/2, y: 0.1))
                 mergedImgView = UIImageView(image: mergedImg)
                 
                 mergedImgView.transform = CGAffineTransform(scaleX: -1, y: 1)
@@ -113,12 +113,17 @@
         return newImage!
     }
     
-    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+    func textToImage(drawText topText: String, drawText bottomText: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.white
         let textFont = UIFont(name: "Helvetica Bold", size: 12)!
         
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+        let context = UIGraphicsGetCurrentContext()
+        // save the context so that it can be undone later
+        context!.saveGState()
+        context!.translateBy(x: 0, y: image.size.height)
+        context!.scaleBy(x: 1.0, y: -1.0)
         
         let textFontAttributes = [
             NSAttributedStringKey.font: textFont,
@@ -126,11 +131,17 @@
             ] as [NSAttributedStringKey : Any]
         image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
         
-        let rect = CGRect(origin: point, size: image.size)
-        text.draw(in: rect, withAttributes: textFontAttributes)
+        let topRect = CGRect(origin: point, size: image.size)
+        let bottomRect = CGRect(origin: CGPoint(x: image.size.width/0.2, y: image.size.height), size: image.size)
+        topText.draw(in: topRect, withAttributes: textFontAttributes)
+        bottomText.draw(in: bottomRect, withAttributes: textFontAttributes)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // undo changes to the context
+        context!.restoreGState()
         UIGraphicsEndImageContext()
+    
         
         return newImage!
     }
